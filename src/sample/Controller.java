@@ -25,21 +25,23 @@ public class Controller implements EventHandler {
 
     public void handleSetButton(Event event)    {
         if (myView.getHAnswer().isEmpty() ^ myView.getHClue().isEmpty()) {
-            displayErrorMsg("fill in blank horizontal box");
+            myView.setError("fill in blank horizontal box");
         }
         if (myView.getVAnswer().isEmpty() ^ myView.getVClue().isEmpty()) {
-            displayErrorMsg("fill in blank vertical box");
+            myView.setError("fill in blank vertical box");
         }
         crossword.erase(myView.getX(),myView.getY());
         crossword.setBlocked(myView.getX(), myView.getY(), myView.isBlocked());
 
         if (!myView.getHAnswer().isEmpty()) {
             Clue c = new Clue(myView.getHClue(),myView.getHAnswer());
-            crossword.setHorizontalClue(myView.getX(),myView.getY(),c);
+            crossword.setHorizontalClue(myView.getX(),myView.getY(),c,myView);
+            
         }
         if (!myView.getVAnswer().isEmpty()) {
             Clue c = new Clue(myView.getVClue(),myView.getVAnswer());
-            crossword.setVerticalClue(myView.getX(),myView.getY(),c);
+            crossword.setVerticalClue(myView.getX(),myView.getY(),c,myView);
+
         }
 
         refresh();

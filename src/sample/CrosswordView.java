@@ -17,8 +17,9 @@ public class CrosswordView {
     GridPane array = new GridPane();
     TextField x = new TextField();
     TextField y = new TextField();
-    HBox h = new HBox();
+    HBox h1 = new HBox();
     VBox v = new VBox();
+    HBox h2 = new HBox();
     CheckBox blocked = new CheckBox("blocked");
     Label xLabel = new Label("x:");
     Label yLabel = new Label("y:");
@@ -33,6 +34,7 @@ public class CrosswordView {
     Button set = new Button("Set");
     TextField[][] crosswordFields = new TextField[ApplicationConstants.GRID_SIZE][ApplicationConstants.GRID_SIZE];
     Controller myController = null;
+    Label error = new Label("");
 
     public void SetController(Controller c) {
         this.myController = c;
@@ -52,8 +54,9 @@ public class CrosswordView {
         x.setMaxWidth(30);
         y.setMaxWidth(30);
         createGrid();
-        h.getChildren().addAll(xLabel,x,yLabel,y,blocked);
-        v.getChildren().addAll(h,hClueLabel,hClue,hAnswerLabel,hAnswer,vClueLabel,vClue,vAnswerLabel,vAnswer,set);
+        h1.getChildren().addAll(xLabel,x,yLabel,y,blocked);
+        h2.getChildren().addAll(set,error);
+        v.getChildren().addAll(h1,hClueLabel,hClue,hAnswerLabel,hAnswer,vClueLabel,vClue,vAnswerLabel,vAnswer,h2);
         SplitPane root = new SplitPane(array,v);
         set.setId("SET_BUTTON");
 
@@ -175,6 +178,14 @@ public class CrosswordView {
             hAnswer.setDisable(false);
             vAnswer.setDisable(false);
         }
+    }
+
+    public void setError(String msg) {
+        error.setText(msg);
+    }
+
+    public void resetError() {
+        error.setText(" ");
     }
 
 }
