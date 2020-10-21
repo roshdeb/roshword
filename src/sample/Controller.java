@@ -36,7 +36,7 @@ public class Controller implements EventHandler {
         if (!myView.getHAnswer().isEmpty()) {
             Clue c = new Clue(myView.getHClue(),myView.getHAnswer());
             crossword.setHorizontalClue(myView.getX(),myView.getY(),c,myView);
-            
+
         }
         if (!myView.getVAnswer().isEmpty()) {
             Clue c = new Clue(myView.getVClue(),myView.getVAnswer());
@@ -53,6 +53,8 @@ public class Controller implements EventHandler {
         int y = Integer.parseInt(((Control)event.getSource()).getId().split(",")[1]);
         myView.setX(x);
         myView.setY(y);
+
+        myView.setSet(false);
 
         if (crossword.getHorizontalClue(x,y)!=null) {
             myView.setHClue(crossword.getHorizontalClue(x, y).getClue());

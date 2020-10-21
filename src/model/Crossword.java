@@ -20,9 +20,9 @@ public class Crossword {
     public void setVerticalClue(int x, int y, Clue c, CrosswordView myView) {
         crossword[x][y].setVerticalClue(c);
 
-        if (c.getAnswer().length() < ApplicationConstants.GRID_SIZE - y) {
+        if (c.getAnswer().length() <= ApplicationConstants.GRID_SIZE - y) {
 
-            for (int i = 0; i <= c.getAnswer().length(); i++) {
+            for (int i = 0; i < c.getAnswer().length(); i++) {
                 crossword[x][y + i].setCharacter(c.getAnswer().charAt(i));
                 myView.resetError();
             }

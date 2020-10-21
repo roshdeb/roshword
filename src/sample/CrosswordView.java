@@ -54,6 +54,9 @@ public class CrosswordView {
         x.setMaxWidth(30);
         y.setMaxWidth(30);
         createGrid();
+        setSet(true);
+        x.setDisable(true);
+        y.setDisable(true);
         h1.getChildren().addAll(xLabel,x,yLabel,y,blocked);
         h2.getChildren().addAll(set,error);
         v.getChildren().addAll(h1,hClueLabel,hClue,hAnswerLabel,hAnswer,vClueLabel,vClue,vAnswerLabel,vAnswer,h2);
@@ -94,6 +97,8 @@ public class CrosswordView {
                 crosswordFields[i][j].setId(i+","+j);
                 crosswordFields[i][j].setMinHeight(47);
                 crosswordFields[i][j].setOnMouseClicked(myController);
+                crosswordFields[i][j].setBackground(new Background(new BackgroundFill(Color.WHITE,new CornerRadii(2), new Insets(3))));
+                crosswordFields[i][j].setBorder(new Border(new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID, new CornerRadii(1), new BorderWidths(1))));
 //                String boxID = crosswordFields[i][j].getId();
 //                String[] ids = boxID.split(",");
                 /*
@@ -157,11 +162,13 @@ public class CrosswordView {
     }
     public void setBlocked(int x, int y, boolean b) {
         if (b) {
-            crosswordFields[x][y].setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+            crosswordFields[x][y].setBackground(new Background(new BackgroundFill(Color.GRAY,new CornerRadii(2), Insets.EMPTY)));
+            crosswordFields[x][y].setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(1), new BorderWidths(1))));
             System.out.println("Cell Blocked :" + x +":"+  y);
         }
         else {
-           // crosswordFields[x][y].setBackground(new Background(new BackgroundFill(Color.WHITE,CornerRadii.EMPTY, Insets.EMPTY)));
+           crosswordFields[x][y].setBackground(new Background(new BackgroundFill(Color.WHITE,new CornerRadii(2), new Insets(3))));
+           crosswordFields[x][y].setBorder(new Border(new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID, new CornerRadii(1), new BorderWidths(1))));
             System.out.println("Cell UnBlocked :" + x +":"+  y);
         }
 
@@ -186,6 +193,10 @@ public class CrosswordView {
 
     public void resetError() {
         error.setText(" ");
+    }
+
+    public void setSet(boolean b) {
+        set.setDisable(b);
     }
 
 }
