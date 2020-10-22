@@ -15,6 +15,8 @@ public class Controller implements EventHandler {
         this.myView = v;
     }
 
+    boolean check = true;
+
     @Override
     public void handle(Event event) {
         if(((Control)event.getSource()).getId().equals("SET_BUTTON"))
@@ -43,8 +45,17 @@ public class Controller implements EventHandler {
             crossword.setVerticalClue(myView.getX(),myView.getY(),c,myView);
 
         }
+        if (!myView.getVAnswer().isEmpty() && !myView.getHAnswer().isEmpty()) {
+            if (myView.getHAnswer().charAt(0) != myView.getVAnswer().charAt(0)) {
+                myView.setError("first characters don't match");
+                check=false;
 
-        refresh();
+            }
+        }
+
+        if (check) {
+            refresh();
+        }
 
     }
 
@@ -72,6 +83,8 @@ public class Controller implements EventHandler {
             myView.setVClue("");
             myView.setVAnswer("");
         }
+
+
 
         myView.setBlockedCheckbox(crossword.isBlocked(x,y));
         myView.setBlocked(x,y,crossword.isBlocked(x,y));
