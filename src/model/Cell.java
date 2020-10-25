@@ -7,6 +7,9 @@ public class Cell {
     private Clue horizontalClue = null;
     private Clue verticalClue = null;
 
+    boolean vUsed = false;
+    boolean hUsed = false;
+
     char character;
 
     private boolean blocked;
@@ -46,5 +49,21 @@ public class Cell {
 
     public  void setBlocked(boolean blocked) {
         this.blocked = blocked;
+    }
+
+    public void setvUsed(boolean b) {
+        this.vUsed = b;
+    }
+
+    public void sethUsed(boolean b) {
+        this.hUsed = b;
+    }
+
+    public boolean ishUsed() {
+        return hUsed;
+    }
+
+    public boolean isvUsed() {
+        return vUsed;
     }
 }

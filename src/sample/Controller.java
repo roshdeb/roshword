@@ -111,5 +111,9 @@ public class Controller implements EventHandler {
         System.out.println(msg);
     }
 
+    public void setCheck(boolean b) {
+        this.check = b;
+    }
+
 
 }

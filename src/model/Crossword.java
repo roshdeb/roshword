@@ -1,11 +1,13 @@
 package model;
 
 import sample.ApplicationConstants;
+import sample.Controller;
 import sample.CrosswordView;
 
 public class Crossword {
 
     Cell[][] crossword = new Cell[ApplicationConstants.GRID_SIZE][ApplicationConstants.GRID_SIZE];
+    boolean check;
 
     public Crossword() {
 
@@ -23,8 +25,35 @@ public class Crossword {
         if (c.getAnswer().length() <= ApplicationConstants.GRID_SIZE - y) {
 
             for (int i = 0; i < c.getAnswer().length(); i++) {
-                crossword[x][y + i].setCharacter(c.getAnswer().charAt(i));
-                myView.resetError();
+                if (!crossword[x][y+i].isvUsed()) {
+                    check=true;
+                }
+                else {
+                    check=false;
+                    break;
+                }
+                if (!crossword[x][y+i].ishUsed()) {
+                    check=true;
+                }
+                else {
+                    if (crossword[x][y+i].getCharacter()==c.getAnswer().charAt(i)) {
+                        check=true;
+                    }
+                    else {
+                        check=false;
+                        break;
+                    }
+                }
+            }
+            if (check) {
+                for (int i = 0; i < c.getAnswer().length(); i++) {
+                    crossword[x][y + i].setCharacter(c.getAnswer().charAt(i));
+                    crossword[x][y + i].setvUsed(true);
+                    myView.resetError();
+                }
+            }
+            else {
+                myView.setError("Answer does not fit");
             }
         }
         else {myView.setError("Answer is too long");}
@@ -36,8 +65,35 @@ public class Crossword {
 
         if (c.getAnswer().length()<= ApplicationConstants.GRID_SIZE-x) {
             for (int i = 0; i < c.getAnswer().length(); i++) {
-                crossword[x + i][y].setCharacter(c.getAnswer().charAt(i));
-                myView.resetError();
+                if (!crossword[x+i][y].ishUsed()) {
+                    check=true;
+                }
+                else {
+                    check=false;
+                    break;
+                }
+                if (!crossword[x+i][y].isvUsed()) {
+                    check=true;
+                }
+                else {
+                    if (crossword[x+i][y].getCharacter()==c.getAnswer().charAt(i)) {
+                        check=true;
+                    }
+                    else {
+                        check=false;
+                        break;
+                    }
+                }
+            }
+            if (check) {
+                for (int i = 0; i < c.getAnswer().length(); i++) {
+                    crossword[x + i][y].setCharacter(c.getAnswer().charAt(i));
+                    crossword[x + i][y].sethUsed(true);
+                    myView.resetError();
+                }
+            }
+            else {
+                myView.setError("Answer does not fit");
             }
         }
         else {myView.setError("Answer is too long");}

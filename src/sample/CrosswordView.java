@@ -164,12 +164,12 @@ public class CrosswordView {
         if (b) {
             crosswordFields[x][y].setBackground(new Background(new BackgroundFill(Color.GRAY,new CornerRadii(2), Insets.EMPTY)));
             crosswordFields[x][y].setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(1), new BorderWidths(1))));
-            System.out.println("Cell Blocked :" + x +":"+  y);
+            //System.out.println("Cell Blocked :" + x +":"+  y);
         }
         else {
            crosswordFields[x][y].setBackground(new Background(new BackgroundFill(Color.WHITE,new CornerRadii(2), new Insets(3))));
            crosswordFields[x][y].setBorder(new Border(new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID, new CornerRadii(1), new BorderWidths(1))));
-            System.out.println("Cell UnBlocked :" + x +":"+  y);
+           // System.out.println("Cell UnBlocked :" + x +":"+  y);
         }
 
     }
